@@ -1,0 +1,16 @@
+#!/bin/bash
+
+export DOSBOX_DRIVEC=${DOSBOX_DRIVEC:-/dados/Jogos/DOSBox}
+
+confdir="$DOSBOX_DRIVEC"/conf
+defaultconf="$confdir"/default-linux.conf
+gameconf="$confdir"/"$1".conf
+
+args=()
+
+if [[ -f "$gameconf" ]]; then
+	args+=(-conf "$defaultconf" -conf "$gameconf")
+	shift
+fi
+
+/usr/bin/dosbox "${args[@]}" "$@"

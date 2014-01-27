@@ -1,0 +1,11 @@
+_dosbox_games()
+{
+        local cur
+
+        COMPREPLY=()
+        cur=${COMP_WORDS[COMP_CWORD]}
+        COMPREPLY=($( compgen -W "$(for x in "$DOSBOX_DRIVEC"/conf/*.conf; do echo $(basename "${x%.*}"); done)" -- $cur ) )
+}
+have dosbox &&
+export DOSBOX_DRIVEC=/dados/Jogos/DOSBox &&
+complete -F _dosbox_games dosbox
