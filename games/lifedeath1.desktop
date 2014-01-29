@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Life and Death
+Categories=Game;
+Terminal=false
+StartupNotify=true
+StartupWMClass=dosbox
+# Hardcoded icon path is necessary since icon is not square.
+Icon=/home/rodrigo/work/dosbox/games/lifedeath1.png
+Exec=dosbox ld1
