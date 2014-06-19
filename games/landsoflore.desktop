@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Lands of Lore
+Categories=Game;
+Terminal=false
+StartupNotify=true
+StartupWMClass=dosbox
+# Hardcoded icon path is necessary since icon is not square.
+Icon=/home/rodrigo/work/dosbox/games/landsoflore.png
+Exec=dosbox lol
