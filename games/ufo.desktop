@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=X-COM UFO Defense
+Categories=Game;
+Terminal=false
+StartupNotify=true
+Icon=/home/rodrigo/work/dosbox/dosbox-tools/games/ufo.png
+Exec=dosbox ufo

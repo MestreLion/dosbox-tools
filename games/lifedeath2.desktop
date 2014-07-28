@@ -6,7 +6,6 @@ GenericName=Life and Death 2
 Categories=Game;
 Terminal=false
 StartupNotify=true
-StartupWMClass=dosbox
 # Hardcoded icon path is necessary since icon is not square.
 Icon=/home/rodrigo/work/dosbox/games/lifedeath2.png
 Exec=dosbox ld2

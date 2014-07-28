@@ -32,7 +32,11 @@ alias privateer="dosbox priv"
 alias syndicate="dosbox synd"
 alias syndicate-ar="dosbox synd_ar"
 alias lands-of-lore="dosbox lol"
-
+alias themehospital="dosbox hospital"
+alias hospital="dosbox hospital"
+alias ufo="dosbox ufo"
+alias epicpinball="dosbox epicpinball"
+alias pinbal="dosbox epicpinball"
 
 # bash completion
 _dosbox_games()
