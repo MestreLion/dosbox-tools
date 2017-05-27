@@ -1,0 +1,33 @@
+Gambiarra ABNT2
+por BozoDel
+
+1- O que é?
+Eu uso o teclado Nativo (que é um tipo de Dvorak brasileiro), mas não tem suporte pra ele no DOSBox. Acabei descobrindo que nem o ABNT2 tem suporte direito, então resolvi fazer uma gambiarra para os dois. Não funciona cem por cento, mas ajuda.
+
+2- Por quê?
+Você já deve ter reparado que o DOSBox não tem suporte verdadeiro para o teclado ABNT2. Caso queira conferir, use o comando "keyb br" (para voltar ao teclado padrão, use "keyb none"). O problema é que o programa não reconhece a tecla "/?", que é uma tecla muito necessária para se usar o DOSBox. Não é culpa do pessoal do DOSBox, é que eles dependem da Simple DirectMedia Layer, que aparentemente não vai resolver isso.
+
+3- Tem certeza?
+O teclado padrão é muito parecido com o ABNT2, então você só precisa se acostumar.
+Esta gambiarra que fiz fica mais parecida com o ABNT2, mas tem algumas limitações:
+- Não tem Ç. Se você apertar essa tecla, recebe um C.
+- Não tem todos os acentos, só o agudo e o til.
+Além disso, você vai ter que instalar (o que não é muito difícil), e, toda vez que for usar o DOSBox, terá que fazer uma configuração rápida.
+
+4- Como instalar?
+a) localizar o arquivo "mapper-0.74.map" original
+Existe um arquivo do DOSBox chamado "mapper-0.74.map", que contém as informações sobre o layout de teclado. No Linux, esse arquivo fica numa pasta chamada .dosbox, mas não sei onde fica em outros sistemas operacionais. E o arquivo só aparece depois de ter sido salvo uma vez. Então você deve  iniciar o DOSBox, apertar Ctrl+F1, e clicar em "Save". Saia do DOSBox e agora ache o arquivo, deve estar na pasta do DOSBox em algum lugar.
+b) substituindo o arquivo "mapper-0.74.map"
+Agora você deve colocar o "mapper-0.74.map" que veio junto com este "leia-me" no lugar do arquivo original.
+
+5- Como utilizar?
+Tem um detalhezinho, é que TODA VEZ que você for usar o DOSBox, tem que configurar uma coisinha:
+a) aperte Ctrl+F1
+b) clique no símbolo "/"
+c) clique em "Add"
+d) aperte o botão "/?" no seu teclado
+e) clique em "Exit"
+Pronto, agora seu Gambiarra ABNT2 está funcionando!
+
+6- Contato?
+Caso tenha alguma dúvida ou queira fazer alguma sugestão, mande um email para danielbzd@zoho.com. Nada de spam, por favor.
