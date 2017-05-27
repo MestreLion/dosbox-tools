@@ -42,9 +42,16 @@ alias pinbal="dosbox epicpinball"
 _dosbox_games()
 {
         local cur
+        local name
+        local x
 
         COMPREPLY=()
         cur=${COMP_WORDS[COMP_CWORD]}
-        COMPREPLY=($( compgen -W "$(for x in "$DOSBOX_DRIVEC"/conf/*.conf; do echo $(basename "${x%.*}"); done)" -- $cur ) )
+        COMPREPLY=($( compgen -W "$(
+                for x in "$DOSBOX_DRIVEC"/conf/*.conf; do
+                        name=$(basename "${x%.*}")
+                        case "$name" in default*);;*) echo "$name";; esac
+                done
+        )" -- $cur ) )
 }
 complete -F _dosbox_games dosbox
