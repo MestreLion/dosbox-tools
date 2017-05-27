@@ -4,13 +4,29 @@ export DOSBOX_DRIVEC=${DOSBOX_DRIVEC:-/dados/Jogos/DOSBox}
 
 confdir="$DOSBOX_DRIVEC"/conf
 defaultconf="$confdir"/default.linux.conf
-gameconf="$confdir"/"$1".conf
+gameconf=""
 
 args=(-conf "$defaultconf")
 
-if [[ -f "$gameconf" ]]; then
-	args+=(-conf "$gameconf")
+while (( $# )); do
+	case "$1" in
+	-h|--help) man dosbox; exit ;;
+	-*       ) args+=( "$1" )   ;;
+	*        )
+		if [[ "$gameconf" ]]; then
+			args+=( "$1" )
+		else
+			gameconf="$confdir"/"$1".conf
+			if [[ -f "$gameconf" ]]; then
+				args+=(-conf "$gameconf")
+			else
+				args+=( "$1" )
+				gameconf=""
+			fi
+		fi
+	;;
+	esac
 	shift
-fi
+done
 
 /usr/bin/dosbox "${args[@]}" "$@"
