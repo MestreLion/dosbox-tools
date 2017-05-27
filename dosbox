@@ -3,7 +3,7 @@
 export DOSBOX_DRIVEC=${DOSBOX_DRIVEC:-/dados/Jogos/DOSBox}
 
 confdir="$DOSBOX_DRIVEC"/conf
-defaultconf="$confdir"/default-linux.conf
+defaultconf="$confdir"/default.linux.conf
 gameconf="$confdir"/"$1".conf
 
 args=()
