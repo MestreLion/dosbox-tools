@@ -6,10 +6,10 @@ confdir="$DOSBOX_DRIVEC"/conf
 defaultconf="$confdir"/default.linux.conf
 gameconf="$confdir"/"$1".conf
 
-args=()
+args=(-conf "$defaultconf")
 
 if [[ -f "$gameconf" ]]; then
-	args+=(-conf "$defaultconf" -conf "$gameconf")
+	args+=(-conf "$gameconf")
 	shift
 fi
 
