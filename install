@@ -1,0 +1,45 @@
+#!/bin/bash
+
+myname="${0##*/}"
+mydir=$(dirname "$(readlink -f "$0")")
+
+slug=dosbox
+bindir="$HOME"/.local/bin
+
+fatal()   { [[ "${1:-}" ]] && echo "$myname: error: $@" >&2 ; exit 1; }
+
+# Set the drive C location. Should be set ONLY here
+export DOSBOX_DRIVEC=${DOSBOX_DRIVEC:-/dados/Jogos/DOSBox}
+export DOSBOX_CONFDIR=${DOSBOX_CONFDIR:-"$mydir"/conf}
+
+if ! [[ -d "$DOSBOX_DRIVEC" ]]; then
+	fatal "DOSBox drive C: does not exist: $DOSBOX_DRIVEC"
+fi
+
+# Symlink the wrapper executable
+if ! [[ -f "$bindir"/"$slug" ]]; then
+	ln -s "$mydir"/"$slug" "$bindir"
+fi
+
+#TODO: wrap in a grep block!
+# Export paths in ~/.profile
+#cat >> $SCRIPTS/home/profile <<-EOF
+#	# Added by dosbox-tools
+#	export DOSBOX_DRIVEC=$( printf '%q' "$DOSBOX_DRIVEC")
+#EOF
+#if ! [[ "$DOSBOX_CONFDIR" == "$mydir"/conf ]]; then
+#	cat >> $SCRIPTS/home/profile <<-EOF
+#		export DOSBOX_CONFDIR=$( printf '%q' "$DOSBOX_CONFDIR")
+#	EOF
+#fi
+# Add dosbox-tools-bashrc to ~/.bashrc
+#cat >> $SCRIPTS/home/bashrc <<-EOF
+#	# Added by dosbox-tools
+#	if [ -d $(printf '%q' "$mydir") ] ; then
+#	    source $(printf '%q' "$mydir"/dosbox-bashrc)
+#	fi
+#EOF
+
+# Copy BAT files to C:\
+# TODO: Mount BAT dir to D:\
+cp --update -- "$mydir"/bat/*.bat "$DOSBOX_DRIVEC"
