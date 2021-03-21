@@ -1,0 +1,3 @@
+cd priv
+priv
+cd ..
