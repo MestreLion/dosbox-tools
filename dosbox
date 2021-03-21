@@ -1,9 +1,16 @@
 #!/bin/bash
 
-export DOSBOX_DRIVEC=${DOSBOX_DRIVEC:-/dados/Jogos/DOSBox}
+mydir=$(dirname "$(readlink -f "$0")")
 
-confdir="$DOSBOX_DRIVEC"/conf
-defaultconf="$confdir"/default.linux.conf
+fatal()   { [[ "${1:-}" ]] && echo "$myname: error: $@" >&2 ; exit 1; }
+
+if ! [[ -d "$DOSBOX_DRIVEC" ]]; then
+	fatal "DOSBOX_DRIVEC is not set or does not exist, run the installer! [$DOSBOX_DRIVEC]"
+fi
+
+DOSBOX_CONFDIR=${DOSBOX_CONFDIR:-"$mydir"/conf}
+
+defaultconf="$DOSBOX_CONFDIR"/default.linux.conf
 gameconf=""
 
 args=(-conf "$defaultconf")
@@ -16,7 +23,7 @@ while (( $# )); do
 		if [[ "$gameconf" ]]; then
 			args+=( "$1" )
 		else
-			gameconf="$confdir"/"$1".conf
+			gameconf="$DOSBOX_CONFDIR"/"$1".conf
 			if [[ -f "$gameconf" ]]; then
 				args+=(-conf "$gameconf")
 			else
@@ -29,4 +36,7 @@ while (( $# )); do
 	shift
 done
 
+cd "$DOSBOX_DRIVEC"  # default.linux.conf has 'mount c .'
+
+set -x
 /usr/bin/dosbox "${args[@]}" "$@"

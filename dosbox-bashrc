@@ -16,15 +16,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # This file is NOT meant to be executed, but sourced by ~/.bashrc
-# To use, add these lines to ~/.bashrc:
-#
+
+# To use, either run /path/to/dosbox/install, OR
+# Add these lines to ~/.profile
+#	export DOSBOX_DRIVEC=/path/to/games
+#	export DOSBOX_CONFDIR=/path/to/confdir  # Defaults to /path/to/dosbox-tools/conf
+# and these to ~/.bashrc
 #	if [ -d "/path/to/dosbox-tools" ] ; then
-#	    PATH="$PATH:/path/to/dosbox-tools"
 #	    source "/path/to/dosbox-tools/dosbox-tools-bashrc"
 #	fi
-#
-
-export DOSBOX_DRIVEC=${DOSBOX_DRIVEC:-/dados/Jogos/DOSBox}
 
 alias lifedeath1="dosbox ld1"
 alias lifedeath2="dosbox ld2"
@@ -41,6 +41,7 @@ alias pinbal="dosbox epicpinball"
 # bash completion
 _dosbox_games()
 {
+        local DOSBOX_CONFDIR=${DOSBOX_CONFDIR:-"$BASH_SOURCE"/conf}
         local cur
         local name
         local x
@@ -48,7 +49,7 @@ _dosbox_games()
         COMPREPLY=()
         cur=${COMP_WORDS[COMP_CWORD]}
         COMPREPLY=($( compgen -W "$(
-                for x in "$DOSBOX_DRIVEC"/conf/*.conf; do
+                for x in "$DOSBOX_CONFDIR"/*.conf; do
                         name=$(basename "${x%.*}")
                         case "$name" in default*);;*) echo "$name";; esac
                 done
