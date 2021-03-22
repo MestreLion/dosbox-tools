@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# User configurable
+roguedir=$DOSBOX_DRIVEC
+savesdir=$roguedir/saves
+
+# User input
+savename=${1+.$1}
+
+# Do not edit
+roguesave=$roguedir/ROGUE.SAV
+savegame=$savesdir/ROGUE$savename.SAV
+
+
+if ! [[ -e "$savegame" ]]; then
+	echo "Rogue save not found: $savegame"
+	echo "Saved games:"
+	for save in "$savesdir"/ROGUE.*.SAV; do
+		echo "	$(basename "$save")"
+	done
+	echo "Usage: rogue-load <SAVENAME>"
+	exit 1
+fi
+
+cp --verbose --backup --suffix ".BAK" "$savegame" "$roguesave"
+
+dosbox rogue
